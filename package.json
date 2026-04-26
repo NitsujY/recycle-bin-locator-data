@@ -1,0 +1,17 @@
+{
+  "name": "recycle-bin-locator-data",
+  "version": "1.0.0",
+  "description": "Data pipeline for the Recycle Bin Locator — fetches, normalises, and publishes recycling collection point data.",
+  "private": true,
+  "scripts": {
+    "pipeline": "ts-node pipeline/index.ts"
+  },
+  "devDependencies": {
+    "typescript": "^5.4.5",
+    "ts-node": "^10.9.2",
+    "@types/node": "^20.12.12"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

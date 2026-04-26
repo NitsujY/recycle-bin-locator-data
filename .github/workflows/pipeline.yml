@@ -1,0 +1,24 @@
+name: Data Pipeline
+
+on:
+  schedule:
+    - cron: "0 2 * * *" # daily at 02:00 UTC
+  workflow_dispatch: # manual trigger
+
+jobs:
+  run-pipeline:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+      - run: npm ci
+      - run: npm run pipeline
+      - name: Commit updated dataset
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add data/ archive/
+          git diff --cached --quiet || git commit -m "chore: update dataset $(date -u +%Y-%m-%d)"
+          git push
