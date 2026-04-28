@@ -99,6 +99,9 @@ function mapEpdCategory(raw: string): MaterialCategory {
   const lower = raw.trim().toLowerCase();
 
   if (lower.includes("paper")) return MaterialCategory.Paper;
+  if (lower.includes("metal") || lower.includes("aluminium") || lower.includes("aluminum")) {
+    return MaterialCategory.Metal;
+  }
   if (lower.includes("plastic")) return MaterialCategory.Plastic;
   if (lower.includes("glass")) return MaterialCategory.Glass;
   if (
